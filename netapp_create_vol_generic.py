@@ -74,22 +74,22 @@ def parse_args() -> argparse.Namespace:
         description="This script will create a new volume."
     )
     parser.add_argument(
-        "-c", "--cluster", required=True, help="Netapp cluster: manta.nas.gatech.edu or raiemanta.matrix.gatech.edu"
+        "-c", "--cluster", required=True, help="Netapp cluster: "
     )
     parser.add_argument(
-        "-v", "--volume_name", required=True, help="Volume to create, ex. test_arch_bdevl"
+        "-v", "--volume_name", required=True, help="Volume to create, ex."
     )
     parser.add_argument(
-        "-svm", "--vserver_name", required=True, help="SVM to create the volume from, ex. manta-ora"
+        "-svm", "--vserver_name", required=True, help="SVM to create the volume from, ex."
     )
     parser.add_argument(
-        "-a", "--aggr_name", required=True, help="Aggregate to create the volume from, ex. manta12_hsata"
+        "-a", "--aggr_name", required=True, help="Aggregate to create the volume from, ex."
     )
     parser.add_argument(
         "-s", "--volume_size", required=True, help="Size of the volume in bytes."
     )
     parser.add_argument(
-        "-e", "--export_policy", required=True, help="Export policy to add to volume. Use <host name> before .gatech.edu."
+        "-e", "--export_policy", required=True, help="Export policy to add to volume. Use <host name> before"
     )
     parser.add_argument("-u", "--api_user", default="admin", help="API Username")
     parser.add_argument("-p", "--api_pass", help="API Password")
