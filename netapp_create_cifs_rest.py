@@ -16,16 +16,15 @@ def parse_args() -> argparse.Namespace:
         description="This script will create a new volume."
     )
     parser.add_argument(
-        "-cl", "--cluster", required=False, help="Netapp cluster: manta.nas.gatech.edu or raiemanta.matrix.gatech.edu"
-    )
+        "-cl", "--cluster", required=False, help="Netapp cluster"
     parser.add_argument(
-        "-v", "--volume_name", required=True, help="Volume to create, ex. test_arch_bdevl"
+        "-v", "--volume_name", required=True, help="Volume to create, ex. "
     )
     parser.add_argument(
         "-svm", "--vserver_name", required=True, help="SVM to create."
     )
     parser.add_argument(
-        "-a", "--aggr_name", required=False, help="Aggregate to create the volume from, ex. manta11_hsata"
+        "-a", "--aggr_name", required=False, help="Aggregate to create the volume from, ex."
     )
     parser.add_argument(
         "-s", "--volume_size", required=True, help="Size of the volume in GB. For 1TB, type 1000."
@@ -34,7 +33,7 @@ def parse_args() -> argparse.Namespace:
         "-ip", "--svm_ip", required=True, help="IP address of the SVM. Default on 1663 subnet"
     )
     parser.add_argument(
-        "-ou", "--org_unit", required=True, help="Destination OU in AD. Ex. OU=Servers,OU=Staging,OU=OITSLA,OU=Servers,OU=_OIT,DC=ad,DC=gatech,DC=edu"
+        "-ou", "--org_unit", required=True, help="Destination OU in AD. Ex."
     )
     parser.add_argument(
         "-c", "--clients", nargs='+', required=True,
@@ -66,7 +65,7 @@ with requests.Session() as s:
                                               "ip": {"address": svm_ip, "netmask": "23"},
                                               "service_policy": "default-data-files",
                                               "location": {"broadcast_domain": {"name": "fg-1663"},
-                                                            "home_node": {"name": "manta11", "uuid": "4ea6752a-b92f-11e9-91cb-00a098fa177a" }}}],
+                                                            "home_node": {"name": "manta11", "uuid": "" }}}],
                  "routes": [{"gateway": "", "destination": {"address": "0.0.0.0", "netmask": "0"}}],
                  "dns": {"domains": [""], "servers": ["", ""]},
                  "language": "c.utf_8"})
@@ -200,17 +199,3 @@ if __name__ == "__main__":
     create_export_policy(args.clients, args.vserver_name)
     assign_policy_to_root(args.vserver_name)
     create_volume(args.volume_size, args.volume_name, args.vserver_name)
-    # new_svm = create_svm(args.vserver_name, args.svm_ip, args.org_unit, args.ad_user, args.ad_pass)
-    # if new_svm[1] == 200:
-    #     new_kerb = create_kerb(args.vserver_name)
-    #     if new_kerb[1] == 200:
-    #         new_policy = create_export_policy(args.clients, args.vserver_name)
-    #         if new_policy[2] == 200 and new_policy[3] == 200:
-    #             assign_policy_to_root(args.vserver_name)
-    #             new_volume = create_volume(args.volume_size, args.volume_name, args.vserver_name)
-    #             if new_volume[1] == 200:
-    #                 print("Success")
-    #                 print(new_svm[0])
-    #                 print(new_kerb[0])
-    #                 print(new_policy[0], new_policy[1])
-    #                 print(new_volume[0])
